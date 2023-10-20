@@ -10,7 +10,7 @@ This is for demonstration and individual use only.
 git clone git@github.com:corbin-c/node-sdxl-cli-hf.git
 cd node-sdxl-cli-hf
 npm i
-echo "your hugging face token" > .env
+echo "HF_TOKEN=your hugging face token" > .env
 ```
 
 ## Usage
