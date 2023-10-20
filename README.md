@@ -34,3 +34,7 @@ You can display the generated image after it's been saved using the `-x` option.
 ```bash
 npm run start "your prompt goes here" -- -n "negative prompt here" -x imv
 ```
+
+## Screenshot
+
+ ![screenshot of the script in use](./screenshot.jpg)
