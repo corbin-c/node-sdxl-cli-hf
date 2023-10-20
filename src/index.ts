@@ -1,4 +1,4 @@
-import { execSync } from "child_process";
+import { spawn } from "child_process";
 import { writeFileSync, readdirSync } from "fs";
 import { getImage } from "./model";
 
@@ -6,7 +6,18 @@ import { getImage } from "./model";
   const folder = "./output/";
   const folderContent = readdirSync(folder);
   const prompt = process.argv[2];
-  const negative = process.argv[3] || "";
+  if (!prompt?.length) {
+    console.error("prompt is mandatory");
+    process.exit(1);
+  }
+  const negative =
+    process.argv.indexOf("-n") > 2
+      ? process.argv[process.argv.indexOf("-n") + 1]
+      : "";
+  const exec =
+    process.argv.indexOf("-x") > 2
+      ? process.argv[process.argv.indexOf("-x") + 1]
+      : "";
   console.log("---- generating image ----");
   const imageFiles = folderContent.filter((file) => file.endsWith(".jpg"));
   const targetFileName =
@@ -18,13 +29,17 @@ import { getImage } from "./model";
   writeFileSync(targetFileName, buffer);
   console.log("---- saved to " + targetFileName + " ----");
   const output = `file: ${targetFileName.split(folder)[1]}
-  prompt: ${prompt}
-  negative: ${negative}
-____
-`;
+    prompt: ${prompt}
+    negative: ${negative}
+  `;
+  console.log(output);
   writeFileSync(folder + "prompts.txt", output, {
     flag: "a",
     encoding: "utf-8",
   });
-  execSync("imv " + targetFileName);
+  if (exec.length) {
+    console.log("---- opening image using " + exec + " ----");
+    spawn(exec, [targetFileName]);
+  }
+  process.exit();
 })();
