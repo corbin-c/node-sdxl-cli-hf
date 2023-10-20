@@ -37,4 +37,4 @@ npm run start "your prompt goes here" -- -n "negative prompt here" -x imv
 
 ## Screenshot
 
- ![screenshot of the script in use](./screenshot.jpg)
+ ![screenshot of the script in use](./screenshot.png)
