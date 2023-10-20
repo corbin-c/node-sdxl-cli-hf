@@ -1,6 +1,6 @@
 # node-sdxl-cli-hf
 
-CLI utility script to generate images using SDXL 1.0 model. It uses the [free inference API](https://huggingface.co/docs/api-inference/quicktour) from Hugging Face.
+CLI utility script to generate images using [SDXL 1.0 model](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0). It uses the [free inference API](https://huggingface.co/docs/api-inference/quicktour) from Hugging Face.
 
 This is for demonstration and individual use only.
 
@@ -23,8 +23,14 @@ Simple prompting:
 npm run start "your prompt goes here"
 ```
 
-Using a negative prompt:
+Using a negative prompt with `-n`:
 
 ```bash
-npm run start "your prompt goes here" "negative prompt here"
+npm run start "your prompt goes here" -- -n "negative prompt here"
+```
+
+You can display the generated image after it's been saved using the `-x` option. Pass it the image viewer of your choice, for example [`imv`](https://sr.ht/~exec64/imv/):
+
+```bash
+npm run start "your prompt goes here" -- -n "negative prompt here" -x imv
 ```
